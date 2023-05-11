@@ -5,9 +5,11 @@ package:
   description: Vendor-neutral programmable observability pipelines.
   copyright:
     - license: Apache-2.0
-  # dependencies:
-  #   runtime:
-  #     - busybox
+  dependencies:
+    runtime:
+      - libsystemd
+      - tzdata
+      - ca-certificates-bundle
 
 environment:
   contents:
@@ -33,6 +35,11 @@ pipeline:
 
   - runs: |
       cd agent
+      make generate-ui
+
+      GOOS=$(go env GOOS) GOARCH=$(go env GOARCH) GOARM=${TARGETVARIANT#v} \
+      RELEASE_BUILD=${{package.epoch}} VERSION=${{package.version}} \
+      GO_TAGS="builtinassets promtail_journal_enabled" \
       make agent
 
   - runs: |
