@@ -43,8 +43,7 @@ jobs:
           config: grafana-agent.melange.yaml
           sign-with-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
-          # archs: x86_64,aarch64
-          archs: x86_64
+          archs: x86_64,aarch64
           
       - uses: chainguard-images/actions/apko-publish@6e9cfac3c961818d9c5ce339a9c559cc0c2e5464
         id: apko

@@ -1,13 +1,11 @@
-[![Build action](https://github.com/tuananh/apko-image-template/actions/workflows/release.yaml/badge.svg)](https://github.com/tuananh/apko-image-template/actions/workflows/release.yaml)
+[![Build action](https://github.com/tuananh/grafana-agent/actions/workflows/release.yaml/badge.svg)](https://github.com/tuananh/grafana-agent/actions/workflows/release.yaml)
 
-This is a repo template for creating new container image with [melange](https://github.com/chainguard-dev/melange) & [apko](https://github.com/chainguard-dev/apko).
-
-It comes with a [dummy melange package](hello.melange.yaml) and a default [apko image config](latest.apko.yaml). You will need to edit those files accordingly to get started.
+This is replacement for `grafana/agent`, based on Wolfi OS.
 
 ## Usage
 
 ```bash
-$ docker run --rm -it ghcr.io/tuananh/apko-image-template
+$ docker run --rm -it ghcr.io/tuananh/grafana-agent
 ```
 
 ## Signing
@@ -15,9 +13,9 @@ $ docker run --rm -it ghcr.io/tuananh/apko-image-template
 This image is signed with [cosign](https://github.com/sigstore/cosign). To verify, download `cosign` and run
 
 ```sh
-cosign verify ghcr.io/tuananh/apko-image-template:latest \
+cosign verify ghcr.io/tuananh/grafana-agent:latest \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-  --certificate-identity https://github.com/tuananh/apko-image-template/.github/workflows/release.yaml@refs/heads/main | jq
+  --certificate-identity https://github.com/tuananh/grafana-agent/.github/workflows/release.yaml@refs/heads/main | jq
 ```
 
 Expected output
@@ -25,7 +23,7 @@ Expected output
 <details>
 
 ```
-Verification for ghcr.io/tuananh/apko-image-template:latest --
+Verification for ghcr.io/tuananh/grafana-agent:latest --
 The following checks were performed on each of these signatures:
   - The cosign claims were validated
   - Existence of the claims in the transparency log was verified offline
@@ -34,7 +32,7 @@ The following checks were performed on each of these signatures:
   {
     "critical": {
       "identity": {
-        "docker-reference": "ghcr.io/tuananh/apko-image-template"
+        "docker-reference": "ghcr.io/tuananh/grafana-agent"
       },
       "image": {
         "docker-manifest-digest": "sha256:4e68130405fb4d912edf7980deb1bda938f10a707c5d6df2f1ed47cb9c684900"
@@ -46,7 +44,7 @@ The following checks were performed on each of these signatures:
       "1.3.6.1.4.1.57264.1.2": "schedule",
       "1.3.6.1.4.1.57264.1.3": "458d670d1715c793a31a8e244fd040afb08145a8",
       "1.3.6.1.4.1.57264.1.4": "Build action",
-      "1.3.6.1.4.1.57264.1.5": "tuananh/apko-image-template",
+      "1.3.6.1.4.1.57264.1.5": "tuananh/grafana-agent",
       "1.3.6.1.4.1.57264.1.6": "refs/heads/main",
       "Bundle": {
         "SignedEntryTimestamp": "MEUCIQChkog4XGTsg5Vp6MYWGFBp+MxjENu/gHd7DRwhTNo8bAIgV0jGGKcYEh+cxgBCC9WB1tTjsGh4yJbeqxIZcRQVQp0=",
@@ -58,10 +56,10 @@ The following checks were performed on each of these signatures:
         }
       },
       "Issuer": "https://token.actions.githubusercontent.com",
-      "Subject": "https://github.com/tuananh/apko-image-template/.github/workflows/release.yaml@refs/heads/main",
+      "Subject": "https://github.com/tuananh/grafana-agent/.github/workflows/release.yaml@refs/heads/main",
       "githubWorkflowName": "Build action",
       "githubWorkflowRef": "refs/heads/main",
-      "githubWorkflowRepository": "tuananh/apko-image-template",
+      "githubWorkflowRepository": "tuananh/grafana-agent",
       "githubWorkflowSha": "458d670d1715c793a31a8e244fd040afb08145a8",
       "githubWorkflowTrigger": "schedule"
     }
