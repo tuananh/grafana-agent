@@ -1,0 +1,41 @@
+package:
+  name: grafana-agent
+  version: 0.33.1
+  epoch: 0
+  description: Vendor-neutral programmable observability pipelines.
+  copyright:
+    - license: Apache-2.0
+  # dependencies:
+  #   runtime:
+  #     - busybox
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - busybox
+      - ca-certificates-bundle
+      - go
+      - nodejs-16
+      - yarn
+      - build-base
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/grafana/agent
+      tag: v${{package.version}}
+      expected-commit: 2d1aa1b0ff784b999a4405af6f6843d6546deb1e
+      destination: agent
+
+  - runs: |
+      cd agent
+      make agent
+
+  - runs: |
+      install -m755 -D ./agent/build/grafana-agent "${{targets.destdir}}/usr/local/bin/grafana-agent"
+
+  - uses: strip

@@ -7,7 +7,7 @@ contents:
   packages:
     - wolfi-baselayout
     - busybox
-    - hello@local
+    - grafana-agent@local
 
 accounts:
   groups:
@@ -20,8 +20,8 @@ accounts:
   run-as: 65532
 
 entrypoint:
-  command: /usr/local/bin/hello
+  command: /usr/local/bin/grafana-agent
 
 archs:
 - amd64
-- arm64
+# - arm64
