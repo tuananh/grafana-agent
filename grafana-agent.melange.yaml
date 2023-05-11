@@ -8,6 +8,7 @@ package:
   dependencies:
     runtime:
       - libsystemd
+      - systemd-dev
       - tzdata
       - ca-certificates-bundle
 
@@ -24,6 +25,8 @@ environment:
       - nodejs-16
       - yarn
       - build-base
+      - libsystemd
+      - systemd-dev
 
 pipeline:
   - uses: git-checkout
